@@ -12,10 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <!-- Chosen Palette: Slate Gray & Sky Blue -->
-    <!-- Application Structure Plan: A single-page portfolio with a fixed navigation bar for smooth scrolling. This structure allows recruiters to quickly jump to key sections like 'Projects' or 'Skills'. The flow is designed to be top-down, starting with a broad summary and progressively detailing skills, projects, and qualifications. This is more user-friendly than a static PDF as it guides the user's attention and makes data, like project performance, easier to digest through interactive visualizations. -->
-    <!-- Visualization & Content Choices: Report Info: Project model accuracies (93%, 91%, etc.). Goal: Compare performance. Viz: Bar Chart (Chart.js). Interaction: Tooltips on hover show exact accuracy. Justification: A chart provides a much faster and more impactful comparison of model effectiveness than reading percentages in text. Report Info: Skills. Goal: Organize and inform. Viz: Styled tags (HTML/Tailwind). Justification: Visually separates skills and is more engaging than a bullet list. Report Info: Education/Publications. Goal: Show timeline. Viz: Vertical timeline (HTML/Tailwind). Justification: Clearly shows career progression. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
       body {
         font-family: "Inter", sans-serif;
@@ -39,12 +35,12 @@
         transition: color 0.3s, border-bottom-color 0.3s;
       }
       .nav-link:hover {
-        color: #0ea5e9; /* sky-500 */
+        color: #0ea5e9; 
       }
       .active {
-        color: #0ea5e9; /* sky-500 */
+        color: #0ea5e9; 
         border-bottom-width: 2px;
-        border-bottom-color: #0ea5e9; /* sky-500 */
+        border-bottom-color: #0ea5e9; 
       }
     </style>
   </head>
@@ -442,10 +438,10 @@
                 label: "Model Accuracy",
                 data: [93, 91, 50, 30],
                 backgroundColor: [
-                  "rgba(14, 165, 233, 0.6)", // sky-500
-                  "rgba(56, 189, 248, 0.6)", // sky-400
-                  "rgba(125, 211, 252, 0.6)", // sky-300
-                  "rgba(224, 242, 254, 0.6)", // sky-100
+                  "rgba(14, 165, 233, 0.6)", 
+                  "rgba(56, 189, 248, 0.6)", 
+                  "rgba(125, 211, 252, 0.6)", 
+                  "rgba(224, 242, 254, 0.6)", 
                 ],
                 borderColor: [
                   "rgba(14, 165, 233, 1)",
@@ -531,3 +527,4 @@
     </script>
   </body>
 </html>
+
