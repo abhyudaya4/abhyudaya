@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abhyudaya Dwivedi | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chosen Palette: Slate Gray & Sky Blue -->
+    <!-- Application Structure Plan: A single-page portfolio with a fixed navigation bar for smooth scrolling. This structure allows recruiters to quickly jump to key sections like 'Projects' or 'Skills'. The flow is designed to be top-down, starting with a broad summary and progressively detailing skills, projects, and qualifications. This is more user-friendly than a static PDF as it guides the user's attention and makes data, like project performance, easier to digest through interactive visualizations. -->
+    <!-- Visualization & Content Choices: Report Info: Project model accuracies (93%, 91%, etc.). Goal: Compare performance. Viz: Bar Chart (Chart.js). Interaction: Tooltips on hover show exact accuracy. Justification: A chart provides a much faster and more impactful comparison of model effectiveness than reading percentages in text. Report Info: Skills. Goal: Organize and inform. Viz: Styled tags (HTML/Tailwind). Justification: Visually separates skills and is more engaging than a bullet list. Report Info: Education/Publications. Goal: Show timeline. Viz: Vertical timeline (HTML/Tailwind). Justification: Clearly shows career progression. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc; /* slate-50 */
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 320px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 400px;
+        }
+      }
+      .nav-link {
+        transition: color 0.3s, border-bottom-color 0.3s;
+      }
+      .nav-link:hover {
+        color: #0ea5e9; /* sky-500 */
+      }
+      .active {
+        color: #0ea5e9; /* sky-500 */
+        border-bottom-width: 2px;
+        border-bottom-color: #0ea5e9; /* sky-500 */
+      }
+    </style>
+  </head>
+  <body class="text-slate-700">
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#summary" class="nav-link font-medium pb-1">Summary</a>
+            <a href="#skills" class="nav-link font-medium pb-1">Skills</a>
+            <a href="#projects" class="nav-link font-medium pb-1">Projects</a>
+            <a href="#experience" class="nav-link font-medium pb-1"
+              >Experience</a
+            >
+            <a href="#contact" class="nav-link font-medium pb-1">Contact</a>
+          </div>
+          <div class="md:hidden">
+            <button id="menu-btn" class="text-slate-700 focus:outline-none">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden mt-4 flex flex-col space-y-2"
+        >
+          <a
+            href="#summary"
+            class="nav-link text-center py-2 rounded-md hover:bg-slate-100"
+            >Summary</a
+          >
+          <a
+            href="#skills"
+            class="nav-link text-center py-2 rounded-md hover:bg-slate-100"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="nav-link text-center py-2 rounded-md hover:bg-slate-100"
+            >Projects</a
+          >
+          <a
+            href="#experience"
+            class="nav-link text-center py-2 rounded-md hover:bg-slate-100"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-center py-2 rounded-md hover:bg-slate-100"
+            >Contact</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+      <section id="summary" class="min-h-[60vh] flex items-center">
+        <div class="w-full">
+          <h1
+            class="text-4xl md:text-6xl font-extrabold text-slate-800 leading-tight"
+          >
+            Abhyudaya Dwivedi
+          </h1>
+          <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl">
+            A motivated and detail-oriented aspiring developer with a strong
+            foundation in computer science, software engineering, and machine
+            learning. Eager to apply analytical problem-solving skills and a
+            passion for technology to build innovative software solutions.
+          </p>
+          <div class="mt-8 flex items-center space-x-4">
+            <a
+              href="#contact"
+              class="bg-sky-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-sky-600 transition-colors"
+              >Get In Touch</a
+            >
+            <a
+              href="#projects"
+              class="border-2 border-slate-300 text-slate-700 font-bold py-3 px-6 rounded-lg hover:bg-slate-100 transition-colors"
+              >View My Work</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="py-16 md:py-24">
+        <div class="text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
+            Technical Skills
+          </h2>
+          <p class="mt-2 text-lg text-slate-500 max-w-2xl mx-auto">
+            This section outlines my technical proficiency, from programming
+            languages and frameworks to essential development tools and core
+            concepts.
+          </p>
+        </div>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="bg-white p-6 rounded-xl shadow-md border border-slate-100"
+          >
+            <h3 class="text-xl font-bold text-sky-600 mb-4">
+              Languages & Frameworks
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-sky-100 text-sky-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Python</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >TensorFlow</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Keras</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Scikit-learn</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >NLTK</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >PyTorch</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-md border border-slate-100"
+          >
+            <h3 class="text-xl font-bold text-sky-600 mb-4">Tools & IDEs</h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-sky-100 text-sky-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Visual Studio Code</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Jupyter Notebook</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Anaconda</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-md border border-slate-100"
+          >
+            <h3 class="text-xl font-bold text-sky-600 mb-4">Core Concepts</h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-sky-100 text-sky-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Data Structures</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Algorithms</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >NLP</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Machine Learning</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Deep Learning</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-md border border-slate-100"
+          >
+            <h3 class="text-xl font-bold text-sky-600 mb-4">Soft Skills</h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-sky-100 text-sky-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Communication</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Teamwork</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Problem-Solving</span
+              >
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full"
+                >Active Learner</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="py-16 md:py-24 bg-slate-100 -mx-6 px-6">
+        <div class="text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
+            Projects & Performance
+          </h2>
+          <p class="mt-2 text-lg text-slate-500 max-w-3xl mx-auto">
+            This section showcases my hands-on project experience, focusing on
+            sentiment analysis. The chart below provides a clear, interactive
+            comparison of the accuracy achieved by different models,
+            demonstrating my ability to build, test, and evaluate machine
+            learning solutions.
+          </p>
+        </div>
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div class="space-y-8">
+            <div
+              class="bg-white p-6 rounded-xl shadow-md border border-slate-200"
+            >
+              <h3 class="text-xl font-bold text-slate-800">
+                Deep Learning for Social Media Analysis
+              </h3>
+              <p class="mt-2 text-slate-600">
+                Developed and compared two deep learning architectures for
+                sentiment analysis, achieving high accuracy with a Bi-LSTM model
+                and a hybrid CNN/Bi-LSTM model.
+              </p>
+              <a
+                href="https://github.com/abhyudaya4/Analysis-of-social-media-trends-using-CNN-and-Bi-LSTM/tree/main"
+                target="_blank"
+                class="inline-block mt-4 text-sky-600 font-medium hover:text-sky-700"
+                >View on GitHub &rarr;</a
+              >
+            </div>
+            <div
+              class="bg-white p-6 rounded-xl shadow-md border border-slate-200"
+            >
+              <h3 class="text-xl font-bold text-slate-800">
+                Machine Learning for Sentiment Analysis
+              </h3>
+              <p class="mt-2 text-slate-600">
+                Built a sentiment analysis application using traditional ML
+                models and Scikit-learn, experimenting with feature engineering
+                techniques like TF-IDF.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-lg border border-slate-200"
+          >
+            <h3 class="text-center text-xl font-bold text-slate-800 mb-4">
+              Model Accuracy Comparison
+            </h3>
+            <div class="chart-container">
+              <canvas id="projectsChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="py-16 md:py-24">
+        <div class="text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
+            Education & Publications
+          </h2>
+          <p class="mt-2 text-lg text-slate-500 max-w-2xl mx-auto">
+            My academic journey and contributions to the field through research
+            and publications.
+          </p>
+        </div>
+        <div class="mt-12 relative border-l-2 border-sky-200 ml-4 md:ml-0">
+          <div class="mb-10 ml-8">
+            <span
+              class="absolute flex items-center justify-center w-8 h-8 bg-sky-200 rounded-full -left-4 ring-8 ring-white"
+            >
+              🎓
+            </span>
+            <h3 class="text-xl font-semibold text-slate-800">
+              Master of Computer Applications (MCA)
+            </h3>
+            <p class="text-md font-normal text-slate-500">
+              Noida Institute of Engineering & Technology
+            </p>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-slate-400"
+              >2024 - Present (Expected 2025)</time
+            >
+          </div>
+          <div class="mb-10 ml-8">
+            <span
+              class="absolute flex items-center justify-center w-8 h-8 bg-sky-200 rounded-full -left-4 ring-8 ring-white"
+            >
+              📖
+            </span>
+            <h3 class="text-xl font-semibold text-slate-800">
+              Publication: Analysis of Social Media Trends
+            </h3>
+            <p class="text-md font-normal text-slate-500">
+              Published in Noida Institute of Engineering & Technology Journal,
+              focusing on integrated Bi-LSTM and CNN models.
+            </p>
+          </div>
+          <div class="mb-10 ml-8">
+            <span
+              class="absolute flex items-center justify-center w-8 h-8 bg-sky-200 rounded-full -left-4 ring-8 ring-white"
+            >
+              📖
+            </span>
+            <h3 class="text-xl font-semibold text-slate-800">
+              Publication: AI in Defence & Strategy
+            </h3>
+            <p class="text-md font-normal text-slate-500">
+              Published in Noida Institute of Engineering & Technology Journal,
+              exploring the strategic role of AI.
+            </p>
+          </div>
+          <div class="mb-10 ml-8">
+            <span
+              class="absolute flex items-center justify-center w-8 h-8 bg-sky-200 rounded-full -left-4 ring-8 ring-white"
+            >
+              🎓
+            </span>
+            <h3 class="text-xl font-semibold text-slate-800">
+              Bachelor of Computer Application (BCA)
+            </h3>
+            <p class="text-md font-normal text-slate-500">
+              Ewing Christian College (Autonomous)
+            </p>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-slate-400"
+              >2021 - 2024</time
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="py-16 md:py-24 bg-slate-800 text-white -mx-6 px-6"
+      >
+        <div class="text-center">
+          <h2 class="text-3xl md:text-4xl font-bold">Let's Connect</h2>
+          <p class="mt-2 text-lg text-slate-300 max-w-xl mx-auto">
+            I'm currently seeking for opportunities. Feel free to reach out!
+          </p>
+          <div
+            class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8"
+          >
+            <a
+              href="mailto:abhi76599@gmail.com"
+              class="font-medium text-sky-300 hover:text-sky-200 transition-colors"
+              >abhi76599@gmail.com</a
+            >
+            <span class="hidden md:block text-slate-500">|</span>
+            <a
+              href="https://www.linkedin.com/in/abhudaya-dwivedi"
+              target="_blank"
+              class="font-medium text-sky-300 hover:text-sky-200 transition-colors"
+              >LinkedIn Profile</a
+            >
+            <span class="hidden md:block text-slate-500">|</span>
+            <p class="font-medium text-slate-300">+91-7233082634</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const ctx = document.getElementById("projectsChart").getContext("2d");
+        const projectsChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: [
+              "Bi-LSTM",
+              "Bi-LSTM + CNN",
+              "Decision Tree",
+              "Logistic Regression",
+            ],
+            datasets: [
+              {
+                label: "Model Accuracy",
+                data: [93, 91, 50, 30],
+                backgroundColor: [
+                  "rgba(14, 165, 233, 0.6)", // sky-500
+                  "rgba(56, 189, 248, 0.6)", // sky-400
+                  "rgba(125, 211, 252, 0.6)", // sky-300
+                  "rgba(224, 242, 254, 0.6)", // sky-100
+                ],
+                borderColor: [
+                  "rgba(14, 165, 233, 1)",
+                  "rgba(56, 189, 248, 1)",
+                  "rgba(125, 211, 252, 1)",
+                  "rgba(224, 242, 254, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: function (value) {
+                    return value + "%";
+                  },
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return `Accuracy: ${context.raw}%`;
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        menuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll("section");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.4,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (
+                  link.getAttribute("href").substring(1) === entry.target.id
+                ) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            if (mobileMenu.classList.contains("hidden") === false) {
+              mobileMenu.classList.add("hidden");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
